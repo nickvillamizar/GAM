@@ -4,15 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
-  <style>
-    /* Opcional: estilos básicos para el formulario */
-    body { font-family: Arial, sans-serif; }
-    form { max-width: 600px; margin: auto; }
-    label { display: block; margin-top: 10px; }
-    input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; }
-    h3 { margin-top: 15px; }
-    .section { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
-  </style>
+  <link rel="stylesheet" href="css/style_registro.css">
+  
   <script>
     function mostrarCampos() {
       let rol = document.getElementById("rol_id").value;
@@ -25,6 +18,10 @@
 <body>
   <h2 style="text-align: center;">Registro de Usuario</h2>
   <form action="RegistroController.php" method="POST">
+  <video id="video-background" autoplay loop muted>
+    <source src="video/date_video.mp4" type="video/mp4">
+    Tu navegador no soporta videos en HTML5.
+  </video>
     <!-- Datos generales -->
     <label>Nombre Completo:</label>
     <input type="text" name="nombre_completo" required>
