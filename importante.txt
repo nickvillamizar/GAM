@@ -1,0 +1,2 @@
+http://localhost:8888/apuesta_por_ti/index.php
+http://localhost:8888/phpmyadmin/

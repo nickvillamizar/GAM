@@ -1,0 +1,9 @@
+# .htaccess para redireccionar todas las solicitudes a index.php
+RewriteEngine On
+
+# Si el archivo o directorio existe, se sirve normalmente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirigir al front controller
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

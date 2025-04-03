@@ -1,0 +1,181 @@
+-- 📌 TABLA DE USUARIOS Y ROLES
+-- ==========================
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nombre_completo VARCHAR(255) NOT NULL,
+    cedula VARCHAR(20) UNIQUE NOT NULL,
+    correo VARCHAR(255) UNIQUE NOT NULL,
+    celular VARCHAR(20) NOT NULL,
+    pais VARCHAR(50) NOT NULL,
+    ciudad VARCHAR(50) NOT NULL,
+    direccion VARCHAR(150),
+    fecha_nacimiento DATE,
+    genero VARCHAR(10) CHECK (genero IN ('Masculino', 'Femenino', 'Otro')),
+    contraseña TEXT NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE roles (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE usuario_roles (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    rol_id INT NOT NULL REFERENCES roles(id) ON DELETE CASCADE
+);
+
+-- ==========================
+-- 📌 TABLAS PARA PACIENTES, PROFESIONALES Y FAMILIARES
+-- ==========================
+CREATE TABLE pacientes (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    ocupacion VARCHAR(100),
+    estado_civil VARCHAR(50) CHECK (estado_civil IN ('Soltero', 'Casado', 'Divorciado', 'Viudo')),
+    contacto_emergencia VARCHAR(255),
+    telefono_emergencia VARCHAR(20),
+    antecedentes_familiares TEXT,
+    antecedentes_personales TEXT,
+    antecedentes_psiquiatricos TEXT,
+    estado_actual TEXT,
+    riesgos TEXT,
+    motivo_consulta TEXT NOT NULL
+);
+
+CREATE TABLE profesionales (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    numero_tarjeta_profesional INT UNIQUE CHECK (numero_tarjeta_profesional BETWEEN 50000 AND 80000),
+    especialidad VARCHAR(100) NOT NULL,
+    años_experiencia INT CHECK (años_experiencia >= 0),
+    certificaciones TEXT,
+    pacientes_atendidos INT DEFAULT 0
+);
+
+CREATE TABLE familiares (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+    parentesco VARCHAR(50) NOT NULL,
+    ocupacion VARCHAR(100),
+    puede_intervenir BOOLEAN DEFAULT FALSE
+);
+
+-- ==========================
+-- 📌 TABLAS PARA CITAS Y HISTORIAL CLÍNICO
+-- ==========================
+CREATE TABLE citas (
+    id SERIAL PRIMARY KEY,
+    paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+    profesional_id INT NOT NULL REFERENCES profesionales(id) ON DELETE CASCADE,
+    fecha TIMESTAMP NOT NULL,
+    duracion INT CHECK (duracion > 0),
+    modalidad VARCHAR(50) CHECK (modalidad IN ('Presencial', 'Virtual')),
+    estado VARCHAR(50) CHECK (estado IN ('Pendiente', 'Completada', 'Cancelada')),
+    motivo_cancelacion TEXT
+);
+
+CREATE TABLE historial_clinico (
+    id SERIAL PRIMARY KEY,
+    paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+    profesional_id INT NOT NULL REFERENCES profesionales(id) ON DELETE CASCADE,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    diagnostico TEXT NOT NULL,
+    tratamiento TEXT NOT NULL,
+    evolucion TEXT NOT NULL,
+    medicacion TEXT,
+    tipo_terapia VARCHAR(100) CHECK (tipo_terapia IN ('TCC', 'Psicoanálisis', 'Mindfulness', 'Otro')),
+    recomendaciones TEXT
+);
+
+-- ==========================
+-- 📌 TABLA DE RECUPERACIÓN DE CUENTA
+-- ==========================
+CREATE TABLE recuperacion_cuenta (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    codigo VARCHAR(6) NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    usado BOOLEAN DEFAULT FALSE
+);
+
+-- ==========================
+-- 📌 TABLAS PARA REGISTRO DE ACTIVIDAD Y SUPERVISIÓN FAMILIAR
+-- ==========================
+CREATE TABLE registro_actividad (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    descripcion TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE supervision_familiares (
+    id SERIAL PRIMARY KEY,
+    familiar_id INT NOT NULL REFERENCES familiares(id) ON DELETE CASCADE,
+    paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+    autorizado BOOLEAN DEFAULT FALSE,
+    menor_edad BOOLEAN DEFAULT FALSE,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==========================
+-- 📌 TABLAS PARA TERAPIAS GRUPALES
+-- ==========================
+CREATE TABLE sesiones_grupales (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT NOT NULL,
+    fecha TIMESTAMP NOT NULL,
+    profesional_id INT REFERENCES profesionales(id) ON DELETE CASCADE
+);
+
+CREATE TABLE sesion_participantes (
+    sesion_id INT REFERENCES sesiones_grupales(id) ON DELETE CASCADE,
+    usuario_id INT REFERENCES usuarios(id) ON DELETE CASCADE,
+    PRIMARY KEY (sesion_id, usuario_id)
+);
+
+-- ==========================
+-- 📌 TABLA DE NOTAS PROFESIONALES (PÚBLICAS Y PRIVADAS)
+-- ==========================
+CREATE TABLE notas_profesionales (
+    id SERIAL PRIMARY KEY,
+    profesional_id INT NOT NULL REFERENCES profesionales(id) ON DELETE CASCADE,
+    paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+    nota TEXT NOT NULL,
+    es_publica BOOLEAN DEFAULT FALSE,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==========================
+-- 📌 TABLA DE RECURSOS Y MATERIAL DE APOYO
+-- ==========================
+CREATE TABLE materiales (
+    id SERIAL PRIMARY KEY,
+    profesional_id INT NOT NULL REFERENCES profesionales(id) ON DELETE CASCADE,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    tipo VARCHAR(50) CHECK (tipo IN ('video', 'documento', 'ejercicio')),
+    url TEXT NOT NULL
+);
+
+CREATE TABLE progreso_material (
+    id SERIAL PRIMARY KEY,
+    paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+    material_id INT REFERENCES materiales(id) ON DELETE CASCADE,
+    completado BOOLEAN DEFAULT FALSE,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==========================
+-- 📌 TABLA DE MENSAJES (MENSAJERÍA INSTANTÁNEA)
+-- ==========================
+CREATE TABLE mensajes (
+    id SERIAL PRIMARY KEY,
+    emisor_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    receptor_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    mensaje TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
