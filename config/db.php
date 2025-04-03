@@ -1,17 +1,12 @@
 <?php
-// config/db.php
-$host     = "localhost";
-$usuario  = "root";
-$clave    = "";
-$bd       = "bd_apuesta";
-$puerto   = 3310;
+$servername = "127.0.0.1:3310"; // O "localhost" si es correcto
+$username = "root"; // Ajusta si usas otro usuario
+$password = ""; // Ajusta si tienes contraseña
+$dbname = "bd_apuesta"; // Reemplaza con el nombre correcto
 
-$conn = new mysqli($host, $usuario, $clave, $bd, $puerto);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    die("Conexión fallida: " . $conn->connect_error);
 }
-
-// Configurar charset (opcional pero recomendado)
-$conn->set_charset("utf8");
 ?>

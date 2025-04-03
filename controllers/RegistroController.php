@@ -1,27 +1,62 @@
 <?php
-// controllers/RegistroController.php
+require_once '../config/db.php'; // Archivo de conexión a la base de datos
 
-require_once '../config/db.php';
-require_once '../models/Usuario.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recoger datos del formulario
+    $nombre_completo = trim($_POST['nombre_completo']);
+    $cedula = trim($_POST['cedula']);
+    $correo = trim($_POST['correo']);
+    $celular = trim($_POST['celular']);
+    $pais = trim($_POST['pais']);
+    $ciudad = trim($_POST['ciudad']);
+    $direccion = trim($_POST['direccion']);
+    $fecha_nacimiento = trim($_POST['fecha_nacimiento']);
+    $genero = trim($_POST['genero']);
+    $contraseña = password_hash($_POST['contraseña'], PASSWORD_BCRYPT); // Encriptar contraseña
+    $rol_id = intval($_POST['rol_id']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = new Usuario($conn);
-    $usuario->nombre_completo   = $_POST['nombre_completo'];
-    $usuario->cedula            = $_POST['cedula'];
-    $usuario->correo            = $_POST['correo'];
-    $usuario->celular           = $_POST['celular'];
-    $usuario->pais              = $_POST['pais'];
-    $usuario->ciudad            = $_POST['ciudad'];
-    $usuario->direccion         = $_POST['direccion'];
-    $usuario->fecha_nacimiento  = $_POST['fecha_nacimiento'];
-    $usuario->genero            = $_POST['genero'];
-    $usuario->contraseña = password_hash($_POST['contraseña'], PASSWORD_BCRYPT);
+    try {
+        $pdo->beginTransaction();
 
+        // Verificar si el correo o cédula ya están registrados
+        $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE correo = ? OR cedula = ?");
+        $stmt->execute([$correo, $cedula]);
+        if ($stmt->fetch()) {
+            throw new Exception("El correo o la cédula ya están registrados.");
+        }
 
-    if($usuario->registrar()){
-        header("Location: ../views/login.php?mensaje=Registro exitoso");
-    } else {
-        header("Location: ../views/registro.php?error=Error en el registro");
+        // Insertar usuario
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre_completo, cedula, correo, celular, pais, ciudad, direccion, fecha_nacimiento, genero, contraseña) 
+                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$nombre_completo, $cedula, $correo, $celular, $pais, $ciudad, $direccion, $fecha_nacimiento, $genero, $contraseña]);
+        $usuario_id = $pdo->lastInsertId(); // Obtener el ID del usuario recién creado
+
+        // Asignar rol en `usuario_roles`
+        $stmt = $pdo->prepare("INSERT INTO usuario_roles (usuario_id, rol_id) VALUES (?, ?)");
+        $stmt->execute([$usuario_id, $rol_id]);
+
+        // Insertar en la tabla específica según el rol
+        if ($rol_id == 1) { // Paciente
+            $stmt = $pdo->prepare("INSERT INTO pacientes (usuario_id, motivo_consulta) VALUES (?, 'Motivo no especificado')");
+            $stmt->execute([$usuario_id]);
+        } elseif ($rol_id == 2) { // Profesional
+            $stmt = $pdo->prepare("INSERT INTO profesionales (usuario_id, especialidad, años_experiencia, pacientes_atendidos) 
+                                   VALUES (?, 'No especificada', 0, 0)");
+            $stmt->execute([$usuario_id]);
+        } elseif ($rol_id == 3) { // Familiar
+            $stmt = $pdo->prepare("INSERT INTO familiares (usuario_id, paciente_id, parentesco) VALUES (?, NULL, 'No especificado')");
+            $stmt->execute([$usuario_id]);
+        }
+
+        $pdo->commit();
+        header("Location: ../views/login.php?success=Registro exitoso. Ahora puedes iniciar sesión.");
+        exit();
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        header("Location: ../views/registro.php?error=" . urlencode($e->getMessage()));
+        exit();
     }
+} else {
+    header("Location: ../views/registro.php");
+    exit();
 }
-?>
