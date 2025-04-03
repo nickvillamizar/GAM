@@ -1,13 +1,8 @@
-# .htaccess para redireccionar todas las solicitudes a index.php
 RewriteEngine On
 
-# Permitir acceso directo a login.php y otros archivos importantes
-RewriteCond %{REQUEST_URI} !^/apuesta_por_ti/login.php$ [NC]
-RewriteCond %{REQUEST_URI} !^/apuesta_por_ti/404.php$ [NC]
-
-# Si el archivo o directorio existe, se sirve normalmente
+# Permite que archivos y directorios existentes se carguen directamente
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Redirigir al front controller
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+# Redirige todas las solicitudes a index.php
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]

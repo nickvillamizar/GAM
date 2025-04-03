@@ -1,2 +1,26 @@
 http://localhost:8888/apuesta_por_ti/index.php
 http://localhost:8888/phpmyadmin/
+
+
+1️⃣ Obtener todos los usuarios registrados con su rol
+Esta consulta muestra todos los usuarios junto con su rol, nombre completo y correo. Es útil para obtener una visión general de los usuarios y sus roles.
+
+sql
+Copiar
+Editar
+SELECT u.id AS usuario_id, u.nombre_completo, u.correo, r.nombre AS rol
+FROM usuarios u
+JOIN usuario_roles ur ON u.id = ur.usuario_id
+JOIN roles r ON ur.rol_id = r.id;
+
+/////////////
+8️⃣ Obtener los mensajes enviados entre usuarios
+Consulta para obtener los mensajes enviados entre los usuarios de la plataforma. Es útil para revisar la comunicación entre los usuarios.
+
+sql
+Copiar
+Editar
+SELECT m.fecha, u1.nombre_completo AS emisor, u2.nombre_completo AS receptor, m.mensaje
+FROM mensajes m
+JOIN usuarios u1 ON m.emisor_id = u1.id
+JOIN usuarios u2 ON m.receptor_id = u2.id;

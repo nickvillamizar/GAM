@@ -1,29 +1,32 @@
 <?php
-// index.php: Front Controller
 session_start();
 
-// Incluir archivos de configuración y funciones de enrutamiento
-require_once 'config/db.php';
+$base_url = "http://localhost:8888/apuesta_por_ti/";
 
-// Definir la URL base
-$base_url = '/bd_apuesta/';
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuesta Por Ti</title>
+</head>
+<body>
+    <h1>Bienvenido a Apuesta Por Ti</h1>
+    <a href="<?= $base_url ?>index.php?url=login">Iniciar sesión</a>
+    <a href="<?= $base_url ?>index.php?url=registro">Registrarse</a>
 
-// Obtener la ruta solicitada
-$ruta = isset($_GET['url']) ? $_GET['url'] : 'home';
+    <?php
+    if (isset($_GET['url'])) {
+        $url = $_GET['url'];
 
-// Enrutamiento simple
-switch ($ruta) {
-    case 'home':
-        require_once 'views/home.php';
-        break;
-        case 'login':
-            require_once 'login.php'; // Ahora está en la raíz del proyecto
-            break;
-        case 'registro':
-            require_once 'registro.php'; // También está en la raíz
-            break;
-        
-    default:
-        require_once 'views/404.php';
-        break;
-}
+        if ($url == "login") {
+            include 'views/login.php';
+        } elseif ($url == "registro") {
+            include("registro.php");
+
+        }
+    }
+    ?>
+</body>
+</html>

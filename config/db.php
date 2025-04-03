@@ -1,12 +1,14 @@
 <?php
-$servername = "127.0.0.1:3310"; // O "localhost" si es correcto
-$username = "root"; // Ajusta si usas otro usuario
-$password = ""; // Ajusta si tienes contraseña
-$dbname = "bd_apuesta"; // Reemplaza con el nombre correcto
+$host = 'localhost';
+$port = '3310'; // Puerto corregido
+$dbname = 'bd_apuesta';
+$username = 'root';
+$password = ''; // Si tienes contraseña, agrégala aquí
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
 }
 ?>
