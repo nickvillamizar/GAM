@@ -17,12 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       FROM usuarios u
                       INNER JOIN usuario_roles ur ON u.id = ur.usuario_id
                       INNER JOIN roles r ON ur.rol_id = r.id
-                      WHERE u.correo = :correo";
+                      WHERE u.correo = :correo
+                      LIMIT 1";
             $stmt = $pdo->prepare($query);
-            $stmt->execute([":correo" => $correo]);
+            $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
+            $stmt->execute();
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($usuario && password_verify($contraseña, $usuario["contraseña"])) {
+            if ($usuario && isset($usuario["contraseña"]) && password_verify($contraseña, $usuario["contraseña"])) {
                 $_SESSION["usuario_id"] = $usuario["id"];
                 $_SESSION["rol"] = $usuario["rol"];
 
@@ -51,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

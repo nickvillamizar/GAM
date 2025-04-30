@@ -19,7 +19,7 @@
             <nav>
                 <ul>
                     <li><a href="index.php">Inicio</a></li>
-                    <li><a href="login.php">Iniciar sesión</a></li>
+                    <li><a href="views/login.php">Iniciar sesión</a></li>
                     <li><a href="registro.php" class="btn">Registrarse</a></li>
                 </ul>
             </nav>
