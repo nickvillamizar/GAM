@@ -1,0 +1,117 @@
+/* panel_paciente.css */
+
+.panel {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro con opacidad */
+  border-radius: 10px;
+  margin-top: 80px;
+}
+
+.panel h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+/* Secciones generales */
+.panel section {
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.panel section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Formulario estado de ánimo */
+#formMood select,
+#formMood textarea,
+#formMood button {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+#formMood textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+#formMood button {
+  background: linear-gradient(45deg, #322f2e, #846767);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#formMood button:hover {
+  background: linear-gradient(45deg, #524848, #00c3ff);
+}
+
+/* Listados */
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+ul li {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* Chat */
+#chatBox {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#chatBox textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  resize: vertical;
+  margin-bottom: 10px;
+  border: none;
+}
+
+#btnSend {
+  background: linear-gradient(45deg, #322f2e, #846767);
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btnSend:hover {
+  background: linear-gradient(45deg, #524848, #00c3ff);
+}
+
+/* Video fondo */
+.video-background video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}

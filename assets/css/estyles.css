@@ -1,0 +1,33 @@
+/* Video de fondo */
+.video-background {
+    position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; overflow:hidden;
+  }
+  .video-background video {
+    object-fit:cover; width:100%; height:100%; filter:brightness(0.4);
+  }
+  
+  /* Panel común */
+  .panel {
+    position:relative; z-index:1; max-width:900px; margin:60px auto; padding:30px;
+    background:rgba(0,0,0,0.6); border-radius:12px; color:#fff; backdrop-filter:blur(6px);
+  }
+  
+  /* Titulares */
+  .panel h1 { text-align:center; margin-bottom:20px; font-size:2.5rem; }
+  .panel section { margin-bottom:30px; }
+  
+  /* Formularios y botones */
+  .panel form input, .panel form select, .panel form textarea {
+    width:100%; padding:10px; margin:8px 0; border:none; border-radius:6px;
+  }
+  .panel form button {
+    background:#27ae60; color:#fff; border:none; padding:12px; border-radius:6px;
+    cursor:pointer; font-size:1.1rem;
+  }
+  .panel form button:hover { background:#219150; }
+  
+  /* Listas */
+  .panel ul { list-style:none; }
+  .panel ul li { padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.2); }
+  .panel ul li:last-child { border:none; }
+  

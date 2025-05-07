@@ -24,3 +24,215 @@ SELECT m.fecha, u1.nombre_completo AS emisor, u2.nombre_completo AS receptor, m.
 FROM mensajes m
 JOIN usuarios u1 ON m.emisor_id = u1.id
 JOIN usuarios u2 ON m.receptor_id = u2.id;
+
+🧠 PANEL DEL PACIENTE — “Apuesta por Ti”
+🎯 Propósito: Centralizar el seguimiento emocional, terapias, citas, recursos y comunicación del paciente.
+
+1. 🧾 Header (Fijo en la parte superior)
+Contenido:
+
+Logo de la plataforma o nombre.
+
+Nombre del paciente o avatar.
+
+Botón “Cerrar sesión”.
+
+En móviles: menú hamburguesa con navegación.
+
+Diseño:
+
+Transparente con fondo oscuro semitransparente (rgba(0,0,0,0.7)).
+
+Consistente con Poppins y botones estilizados por tu CSS.
+
+2. 📅 Tarjeta de Próxima Cita
+Consulta desde tabla citas (estado = 'Pendiente') y profesionales.
+
+Elementos visuales:
+
+Fecha, hora, duración, modalidad.
+
+Profesional asignado (nombre + especialidad).
+
+Botones:
+
+“Reprogramar” → redirige a formulario con fechas disponibles.
+
+“Cancelar” → abre modal con confirmación y motivo.
+
+Bonus UX:
+
+Animación de cuenta regresiva si la cita es hoy.
+
+Fondo con icono de reloj/calendario animado (opcional SVG).
+
+3. 😌 Mood Tracker (Estado de Ánimo Diario)
+Tablas involucradas: mood_registro
+
+Componentes:
+
+Selector visual: 5 emojis (de 1=💀 a 5=😄).
+
+Input opcional de comentario (“¿Por qué te sientes así hoy?”).
+
+Gráfico de líneas (con Chart.js) mostrando evolución semanal/mensual.
+
+Botón “Enviar” → se guarda en mood_registro.
+
+Seguridad extra: Prevención de múltiples entradas en el mismo día.
+
+4. 📚 Materiales de Apoyo
+De materiales + progreso_material
+
+Diseño:
+
+Tarjetas con:
+
+Título del recurso
+
+Tipo (video, documento, ejercicio)
+
+Breve descripción
+
+Barra de progreso de completado
+
+Botón “Ver” y “Marcar como Completado” (modal de confirmación)
+
+Visual atractivo:
+
+Íconos dinámicos según tipo (📹 📄 🧠).
+
+Fondo animado si está 100% completado.
+
+5. 🤖 Chat con Inteligencia Artificial (IA)
+Componente especial basado en IA embebida o llamada externa.
+
+UI:
+
+Área de mensajes estilo WhatsApp (scroll vertical).
+
+Prompt con sugerencias rápidas:
+
+¿Qué puedo hacer para calmarme?
+
+¿Recomiéndame una actividad?
+
+Botón: “Recomiéndame ejercicios” → responde con enlaces a materiales.
+
+IA Backing (luego):
+
+Puedes usar OpenAI API o HuggingFace en backend PHP.
+
+Primera versión puede ser solo reglas preprogramadas con respuestas inteligentes.
+
+6. 🧑‍⚕️ Chat con Profesional (Tiempo real)
+Tablas: mensajes, usuarios, profesionales
+
+Requisitos:
+
+WebSocket o AJAX polling para actualizar en tiempo real.
+
+Lista de conversaciones (con badge si hay mensajes sin leer).
+
+Al dar click → abre ventana de chat.
+
+Campo para escribir, botón “Enviar”.
+
+Vista estilo conversación (estilo burbuja).
+
+Mejoras:
+
+Indicación “el profesional está escribiendo...”
+
+Sonido de notificación y vibración (en móviles).
+
+7. 🩺 Historial Clínico
+Desde tabla historial_clinico + profesionales.
+
+Elementos:
+
+Diagnóstico
+
+Tratamiento
+
+Evolución
+
+Medicación (si hay)
+
+Tipo de terapia
+
+Fecha de sesión
+
+Botón “Ver Detalle” que abre todo en modal.
+
+8. 📝 Notas Públicas del Profesional
+Tabla: notas_profesionales donde es_publica = TRUE
+
+Interfaz:
+
+Tarjetas o lista tipo “feed”.
+
+Fecha, contenido de la nota, nombre del profesional.
+
+Buscar por palabra clave.
+
+Ver en ventana emergente con animación suave.
+
+9. 🛡️ Notificaciones y Seguridad
+Tabla: notificaciones, registro_actividad, otp_login
+
+Funciones:
+
+Registro automático cuando el paciente:
+
+inicia sesión,
+
+ve materiales,
+
+responde mood diario.
+
+Notificaciones tipo:
+
+“Tienes una cita mañana”
+
+“Material completado”
+
+“Nuevo mensaje del profesional”
+
+Todo enviado también por correo con plantilla HTML profesional.
+
+10. 📁 Archivos adjuntos
+Desde archivos (relación con notas, materiales o mensajes)
+
+Interfaz:
+
+Listado de archivos subidos (PDF, imagen, video).
+
+Botón “Descargar” y “Ver en línea”.
+
+11. 🧾 Mis Datos Personales
+Nombre, ocupación, contacto emergencia.
+
+Permite editar ciertos campos controlados.
+
+Muestra si es menor de edad.
+
+Mostrar quién es su profesional asignado.
+
+12. 🚪 Cerrar Sesión Segura
+Logout con confirmación.
+
+Cierre total de sesión (session_destroy())
+
+Redirección controlada.
+
+✅ TECNOLOGÍAS RECOMENDADAS PARA ESTO
+Área	Tecnología
+Video de fondo	HTML5 <video>
+Gráficas	Chart.js
+Chat real/IA	AJAX / WebSocket
+Backend	PHP MVC
+Base de datos	MariaDB / MySQL
+Seguridad	Hash, OTP, Tokens
+Frontend	HTML + CSS (actual)
+Diseño adaptable	Media queries

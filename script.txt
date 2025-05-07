@@ -215,3 +215,22 @@ CREATE TABLE archivos (
 ALTER TABLE registro_actividad
   ADD COLUMN ip_origen VARCHAR(45),
   ADD COLUMN user_agent TEXT;
+  ALTER TABLE mensajes ADD COLUMN conversacion_id INT REFERENCES conversaciones(id) ON DELETE CASCADE;
+
+CREATE TABLE conversaciones (
+    id SERIAL PRIMARY KEY,
+    paciente_id INT NOT NULL REFERENCES pacientes(id) ON DELETE CASCADE,
+    profesional_id INT NOT NULL REFERENCES profesionales(id) ON DELETE CASCADE,
+    fecha_inicio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (paciente_id, profesional_id)
+);
+
+
+CREATE TABLE estados_animo (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  paciente_id BIGINT UNSIGNED NOT NULL,
+  estado TINYINT NOT NULL CHECK (estado BETWEEN 1 AND 5),
+  comentario TEXT,
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (paciente_id) REFERENCES pacientes(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

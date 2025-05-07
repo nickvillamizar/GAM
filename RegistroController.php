@@ -98,30 +98,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ':motivo_consulta'         => $motivo_consulta
             ]);
             $rolNombre = "Paciente";
+
         } elseif ($rol_id == "2") { // Profesional
             $numero_tarjeta_profesional = $_POST['numero_tarjeta_profesional'] ?? '';
-            $especialidad             = $_POST['especialidad'] ?? '';
-            $anios_experiencia        = $_POST['años_experiencia'] ?? 0;
+            $especialidad               = $_POST['especialidad'] ?? '';
+            $anios_experiencia          = $_POST['años_experiencia'] ?? 0;
+
+            // Asignar valores por defecto para certificaciones y pacientes_atendidos
+            $certificaciones            = ''; // Deja vacío el campo de certificaciones
+            $pacientes_atendidos        = 0;  // Valor predeterminado para pacientes atendidos
 
             $sql_profesional = "INSERT INTO profesionales (
                                     usuario_id, 
                                     numero_tarjeta_profesional, 
                                     especialidad, 
-                                    años_experiencia
+                                    años_experiencia, 
+                                    certificaciones, 
+                                    pacientes_atendidos
                                 ) VALUES (
                                     :usuario_id, 
                                     :numero_tarjeta_profesional, 
                                     :especialidad, 
-                                    :anios_experiencia
+                                    :anios_experiencia, 
+                                    :certificaciones, 
+                                    :pacientes_atendidos
                                 )";
             $stmt = $pdo->prepare($sql_profesional);
             $stmt->execute([
                 ':usuario_id'                 => $usuario_id,
                 ':numero_tarjeta_profesional' => $numero_tarjeta_profesional,
                 ':especialidad'               => $especialidad,
-                ':anios_experiencia'          => $anios_experiencia
+                ':anios_experiencia'          => $anios_experiencia,
+                ':certificaciones'            => $certificaciones,
+                ':pacientes_atendidos'        => $pacientes_atendidos
             ]);
             $rolNombre = "Profesional";
+
         } elseif ($rol_id == "3") { // Familiar
             $paciente_id = $_POST['paciente_id'] ?? '';
             $parentesco  = $_POST['parentesco'] ?? '';
