@@ -115,3 +115,30 @@ ul li {
   object-fit: cover;
   z-index: -1;
 }
+/* Alerta bonita */
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  animation: aparecer 0.4s ease-in-out;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  animation: aparecer 0.4s ease-in-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
