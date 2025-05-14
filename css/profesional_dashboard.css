@@ -1,234 +1,300 @@
-.panel {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 80px auto 0;
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    }
-    
-    .panel h1 {
-    font-size: 2rem;
-    color: #333;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 30px;
-    }
-    
-    
-    .panel section {
-    background: rgba(250, 250, 250, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    }
-    
-    .panel section h2 {
-    font-size: 1.6rem;
-    color: #333;
-    font-weight: 500;
-    text-align: left;
-    margin-bottom: 15px;
-    }
-    
-    
-    /* Chat */
-#chat-box {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f4f4f9;
-    border-radius: 10px;
-    max-height: 400px;
-    overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  #msgList {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  #msgList div {
-    max-width: 70%;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
-  
-  #msgList .sent {
-    background: #daf8cb;
-    align-self: flex-end;
-    text-align: right;
-  }
-  
-  #msgList .received {
-    background: #fff;
-    align-self: flex-start;
-    text-align: left;
-  }
-  
-  #msgText {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    resize: vertical;
-  }
-  
-  #btnSend {
-    background: linear-gradient(45deg, #4CAF50, #2E8B57);
-    color: white;
-    padding: 12px 20px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    width: 100%;
-    max-width: 120px;
-    margin: 0 auto;
-    transition: all 0.3s ease;
-  }
-  
-  #btnSend:hover {
-    background: linear-gradient(45deg, #388E3C, #2C6B2F);
-    transform: scale(1.05);
-  }
-  
-    \#btnSend\:hover {
-    transform: scale(1.05);
-    }
-    
-    
-    \#formMood {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    
-    \#formMood select,
-    \#formMood textarea {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 8px 0;
-    font-size: 1rem;
-    box-sizing: border-box;
-    }
-    
-    \#formMood textarea {
-    min-height: 80px;
-    }
-    
-    \#formMood button {
-    background: linear-gradient(45deg, #2196F3, #1976D2);
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.2s ease;
-    }
-    
-    \#formMood button\:hover {
-    transform: scale(1.05);
-    }
-    
-    
-    ul {
-    list-style: none;
+/* === RESET === */
+* {
+    margin: 0;
     padding: 0;
-    max-width: 800px;
-    margin: 0 auto;
-    }
-    
-    ul li {
-    background: #fff;
-    padding: 10px 14px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-    
-    ul li\:hover {
-    background: #f9f9f9;
-    }
-    
-    
-    .video-background video {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  body, html {
+    font-family: 'Segoe UI', sans-serif;
+    height: 100%;
+    background-color: #f0f4f8;
+    color: #333;
+  }
+  
+  /* === VIDEO BACKGROUND === */
+  .video-background {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+  }
+  
+  #bg-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
-    }
-    
-    
-    .overlay {
-    position: relative;
-    z-index: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    
-    
-    .alert-success,
-    .alert-error {
-    width: 100%;
-    max-width: 600px;
-    padding: 14px;
-    margin: 15px auto;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
-    }
-    
-    .alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    }
-    
-    .alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
-    }
-    
-    @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-    }
-    /* Estilo para la sección de Videollamada */
-#videollamada {
-    margin-top: 40px;
-    background: rgba(255, 255, 255, 0.9); /* Fondo suave */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  #videollamada h2 {
-    font-size: 1.6rem;
-    color: #333;
+  /* === DASHBOARD CONTAINER === */
+  .panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 80px auto;
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+  
+  /* === SECCIONES INTERNAS === */
+  .panel section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  .panel section:hover {
+    transform: translateY(-5px);
+  }
+  
+  .panel h1 {
+    grid-column: 1 / -1;
+    font-size: 2.5rem;
     text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  .panel section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #388e3c;
+    text-align: center;
+  }
+  
+  /* === MENÚ LATERAL / SUPERIOR (si usas) === */
+  .menu-lateral {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100%;
+    width: 200px;
+    background: #2e7d32;
+    color: white;
+    padding: 30px 20px;
+    z-index: 100;
+  }
+  
+  .menu-lateral nav a {
+    display: block;
+    margin: 15px 0;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .menu-lateral nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* === FORMULARIOS === */
+  #moodFormContainer {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  }
+  
+  #moodForm select,
+  #moodForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  #moodForm button {
+    background-color: #43a047;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #moodForm button:hover {
+    background-color: #388e3c;
+  }
+  
+  /* === MENSAJE EMOCIONAL === */
+  #mensajeBonito {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .alert-success {
+    color: #2e7d32;
+    font-weight: bold;
+  }
+  
+  .alert-error {
+    color: #c62828;
+    font-weight: bold;
+  }
+  
+  /* === CHAT BOX === */
+  #chat-box {
+    max-height: 360px;
+    overflow-y: auto;
+    background-color: #f1f8e9;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  #msgList div {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 70%;
+  }
+  
+  .sent {
+    background: #c8e6c9;
+    align-self: flex-end;
+  }
+  
+  .received {
+    background: #fff;
+    align-self: flex-start;
+  }
+  
+  #msgText, #btnSend {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  #btnSend {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  #btnSend:hover {
+    background-color: #388e3c;
+  }
+  
+  /* === VIDEOLLAMADA === */
+  #videollamada {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .videollamada-container iframe {
+    width: 100%;
+    height: 600px;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  /* === TARJETAS (CARDS) === */
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    text-align: center;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  .card button {
+    margin-top: 10px;
+    background-color: #1976d2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .card button:hover {
+    background-color: #1565c0;
+  }
+  
+  /* === GAME & BIENESTAR SECTIONS === */
+  .game-container, .bienestar-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    backdrop-filter: blur(4px);
+  }
+  
+  .game-container h2,
+  .bienestar-container h1 {
+    font-size: 2rem;
     margin-bottom: 20px;
   }
   
-  .videollamada-container iframe {
-    border-radius: 10px;
-    max-width: 100%;
-    height: 600px; /* Ajustar altura */
+  .bienestar-seccion {
+    margin-bottom: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* === TABS / PESTAÑAS === */
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+  }
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+  }
+  .tab.active {
+    border-bottom: 3px solid #388e3c;
+    color: #388e3c;
+  }
+  
+  /* === ANIMACIONES === */
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* === DARK MODE === */
+  body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+  body.dark-mode .panel,
+  body.dark-mode .card,
+  body.dark-mode .bienestar-container,
+  body.dark-mode .game-container {
+    background: rgba(30, 30, 30, 0.9);
+    color: #f0f0f0;
+  }
+  body.dark-mode .panel section {
+    background: rgba(40, 40, 40, 0.95);
+  }
+  body.dark-mode .card button,
+  body.dark-mode #btnSend,
+  body.dark-mode #moodForm button {
+    background-color: #66bb6a;
+  }
+  body.dark-mode .card button:hover,
+  body.dark-mode #btnSend:hover,
+  body.dark-mode #moodForm button:hover {
+    background-color: #43a047;
   }
   

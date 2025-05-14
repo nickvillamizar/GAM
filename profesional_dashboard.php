@@ -149,6 +149,12 @@ if (!isset($_SESSION['usuario_id'])) {
         });
     });
   </script>
+  <div class="pro-panel-section">
+  <h2>Mis citas programadas</h2>
+<div class="calendly-inline-widget" data-url="https://calendly.com/dr_pablo_ramirez" style="min-width:320px; height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+
     <!-- Sección de Videollamada -->
 <section id="videollamada">
   <h2>Citas Virtuales</h2>

@@ -152,7 +152,13 @@ if (!isset($_SESSION['usuario_id'])) {
       });
     }
     loadMood();
+
   </script>
+  <div class="pro-panel-section">
+  <h2>Agendar una cita</h2>
+  <iframe src="https://calendly.com/dr_pablo_ramirez" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+</div>
+
   <div class="game-container">
   <h2>¡Diviértete un rato!</h2>
   <iframe
@@ -177,6 +183,28 @@ if (!isset($_SESSION['usuario_id'])) {
             style="border-radius: 10px;">
     </iframe>
   </div>
+</section>
+<!-- CONTENIDO HTML PARA SECCIÓN DE BIENESTAR PACIENTE -->
+<div class="bienestar-container">
+  <h1>Zona de Bienestar</h1>
+
+  
+<!-- MÚSICA RELAJANTE -->
+<section class="bienestar-seccion">
+  <h2>Música Relajante</h2>
+  <p>Haz clic en el botón para escuchar música relajante que te ayudará a desconectarte y encontrar calma.</p>
+  <a href="https://www.fiftysounds.com/es/playlist/musica-relajante.html" target="_blank" class="btn-bienestar">
+    🎵 Escuchar música relajante
+  </a>
+</section>
+
+<!-- LECTURA RECOMENDADA -->
+<section class="bienestar-seccion">
+  <h2>Lectura Recomendada</h2>
+  <p>Te recomendamos esta lectura para reflexionar y comprender tus emociones.</p>
+  <a href="https://empoderamientohumano.com/pdf/4-CLAVES-EMOCIONES.pdf" target="_blank" class="btn-bienestar">
+    📘 Leer ahora
+  </a>
 </section>
 
 </body>

@@ -1,158 +1,166 @@
-/* panel_paciente.css */
-
-/* Estilo para el panel */
-body, html {
-  height: 100%;
+/* === RESET === */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-.video-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+body, html {
+  font-family: 'Segoe UI', sans-serif;
   height: 100%;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+/* === VIDEO BACKGROUND === */
+.video-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: -1;
 }
 
 #bg-video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Para cubrir toda el área del fondo */
+  object-fit: cover;
 }
 
+/* === DASHBOARD CONTAINER === */
 .panel {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  background: rgba(255, 255, 255, 0.9); /* Fondo limpio */
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* Títulos */
+/* === SECCIONES INTERNAS === */
+.panel section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.panel section:hover {
+  transform: translateY(-5px);
+}
+
 .panel h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #333;
+  grid-column: 1 / -1;
+  font-size: 2.5rem;
   text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
 }
 
 .panel section h2 {
   font-size: 1.6rem;
-  color: #333;
+  margin-bottom: 15px;
+  color: #388e3c;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-/* Estilo para las secciones */
-.panel section {
-  margin-bottom: 40px;
-  background: rgba(250, 250, 250, 0.9); /* Fondo suave */
-  padding: 20px;
-  border-radius: 10px;
+/* === MENÚ LATERAL / SUPERIOR (si usas) === */
+.menu-lateral {
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%;
+  width: 200px;
+  background: #2e7d32;
+  color: white;
+  padding: 30px 20px;
+  z-index: 100;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  max-width: 800px;
-  margin: 0 auto;
+.menu-lateral nav a {
+  display: block;
+  margin: 15px 0;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-ul li {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.menu-lateral nav a:hover {
+  text-decoration: underline;
 }
 
-/* Estilo para el formulario de estado emocional */
+/* === FORMULARIOS === */
 #moodFormContainer {
-  margin-top: 15px;
-  background: #ffffff;
+  background: #fff;
+  border-radius: 12px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-#moodForm select, #moodForm textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-#moodForm select {
-  background-color: #f9f9f9;
-}
-
+#moodForm select,
 #moodForm textarea {
-  min-height: 100px;
-  resize: vertical;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 #moodForm button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #43a047;
   color: white;
+  padding: 10px;
   border: none;
   border-radius: 8px;
-  font-size: 1.1rem;
+  margin-top: 15px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
-
 #moodForm button:hover {
-  background-color: #45a049;
+  background-color: #388e3c;
 }
 
+/* === MENSAJE EMOCIONAL === */
 #mensajeBonito {
   margin-top: 15px;
   text-align: center;
 }
 
 .alert-success {
-  color: #28a745;
+  color: #2e7d32;
   font-weight: bold;
 }
 
 .alert-error {
-  color: #dc3545;
+  color: #c62828;
   font-weight: bold;
 }
 
-/* Estilo para el chat */
+/* === CHAT BOX === */
 #chat-box {
-  margin-top: 18px;
-  padding: 10px;
-  background-color: #f4f4f9;
-  border-radius: 10px;
   max-height: 360px;
   overflow-y: auto;
+  background-color: #f1f8e9;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 #msgList div {
-  max-width: 70%;
   padding: 10px;
   border-radius: 10px;
-  font-size: 1.1rem;
-  line-height: 1.5;
+  margin-bottom: 10px;
+  max-width: 70%;
 }
 
-#msgList .sent {
-  background: #daf8cb;
+.sent {
+  background: #c8e6c9;
   align-self: flex-end;
 }
 
-#msgList .received {
+.received {
   background: #fff;
   align-self: flex-start;
 }
@@ -160,9 +168,9 @@ ul li {
 #msgText, #btnSend {
   width: 100%;
   padding: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
 }
 
 #btnSend {
@@ -170,45 +178,159 @@ ul li {
   color: white;
   border: none;
 }
-
 #btnSend:hover {
-  background-color: #45a049;
+  background-color: #388e3c;
 }
-/* Estilo para la sección de Videollamada */
+
+/* === VIDEOLLAMADA === */
 #videollamada {
-  margin-top: 40px;
-  background: rgba(255, 255, 255, 0.9); /* Fondo suave */
+  background: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-
-#videollamada h2 {
-  font-size: 1.6rem;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 .videollamada-container iframe {
+  width: 100%;
+  height: 600px;
   border-radius: 10px;
-  max-width: 100%;
-  height: 600px; /* Ajustar altura */
+  border: none;
 }
-.game-container {
+
+/* === TARJETAS (CARDS) === */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card button {
+  margin-top: 10px;
+  background-color: #1976d2;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.card button:hover {
+  background-color: #1565c0;
+}
+
+/* === GAME & BIENESTAR SECTIONS === */
+.game-container, .bienestar-container {
   background: rgba(255, 255, 255, 0.95);
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  margin: 40px auto;
-  max-width: 900px;
   text-align: center;
   backdrop-filter: blur(4px);
 }
 
-.game-container h2 {
+.game-container h2,
+.bienestar-container h1 {
   font-size: 2rem;
-  color: #2c3e50;
   margin-bottom: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bienestar-seccion {
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* === TABS / PESTAÑAS === */
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ddd;
+}
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+}
+.tab.active {
+  border-bottom: 3px solid #388e3c;
+  color: #388e3c;
+}
+
+/* === ANIMACIONES === */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === DARK MODE === */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+body.dark-mode .panel,
+body.dark-mode .card,
+body.dark-mode .bienestar-container,
+body.dark-mode .game-container {
+  background: rgba(30, 30, 30, 0.9);
+  color: #f0f0f0;
+}
+body.dark-mode .panel section {
+  background: rgba(40, 40, 40, 0.95);
+}
+body.dark-mode .card button,
+body.dark-mode #btnSend,
+body.dark-mode #moodForm button {
+  background-color: #66bb6a;
+}
+body.dark-mode .card button:hover,
+body.dark-mode #btnSend:hover,
+body.dark-mode #moodForm button:hover {
+  background-color: #43a047;
+}
+.bienestar-seccion {
+  background-color: #f0f8ff;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.bienestar-seccion h2 {
+  font-size: 1.8em;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.bienestar-seccion p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.btn-bienestar {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #4fc3f7, #0288d1);
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-bienestar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 136, 209, 0.3);
 }
