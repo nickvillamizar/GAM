@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: ../paciente.php");
                         break;
                     case "Profesional":
-                        header("Location: ../views/profesional_dashboard.php");
+                        header("Location: ../profesional_dashboard.php");
                         break;
                     case "Familiar":
                         header("Location: ../views/familiar_dashboard.php");

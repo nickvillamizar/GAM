@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genero            = $_POST['genero'] ?? '';
     $contrasena        = password_hash($_POST['contraseña'], PASSWORD_DEFAULT);
     $rol_id            = $_POST['rol_id'] ?? '';
+    
+   
 
     try {
         $pdo->beginTransaction();
@@ -102,17 +104,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif ($rol_id == "2") { // Profesional
             $numero_tarjeta_profesional = $_POST['numero_tarjeta_profesional'] ?? '';
             $especialidad               = $_POST['especialidad'] ?? '';
-            $anios_experiencia          = $_POST['años_experiencia'] ?? 0;
+            $anios_experiencia          = $_POST['anios_experiencia'] ?? 0;
+
 
             // Asignar valores por defecto para certificaciones y pacientes_atendidos
             $certificaciones            = ''; // Deja vacío el campo de certificaciones
-            $pacientes_atendidos        = 0;  // Valor predeterminado para pacientes atendidos
+            $pacientes_atendidos        = '';  // Valor predeterminado para pacientes atendidos
 
             $sql_profesional = "INSERT INTO profesionales (
                                     usuario_id, 
                                     numero_tarjeta_profesional, 
                                     especialidad, 
-                                    años_experiencia, 
+                                    anios_experiencia, 
                                     certificaciones, 
                                     pacientes_atendidos
                                 ) VALUES (
@@ -156,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mostrar mensaje de éxito y redirigir a login mediante JavaScript
         echo "<script>
                 alert('¡Registro exitoso! Se registró como: $rolNombre. Inicie sesión.');
-                window.location.href = 'login.php';
+                window.location.href = 'views/login.php';
               </script>";
         exit();
     } catch (PDOException $e) {

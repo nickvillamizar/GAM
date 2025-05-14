@@ -1,5 +1,7 @@
 http://localhost:8888/apuesta_por_ti/index.php
 http://localhost:8888/phpmyadmin/
+cd ws-server
+node server.js
 
 
 1️⃣ Obtener todos los usuarios registrados con su rol

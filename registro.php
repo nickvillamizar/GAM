@@ -183,7 +183,7 @@
 
         <div class="form-group">
           <label>Motivo de Consulta:</label>
-          <select name="motivo_consulta" required>
+          <select name="motivo_consulta" >
             <option value="">Seleccione</option>
             <option value="Ansiedad">Ansiedad</option>
             <option value="Depresión">Depresión</option>
@@ -194,22 +194,22 @@
         </div>
       </div>
 
-      <!-- Profesional -->
       <div id="profesional_fields" style="display: none;">
-        <h3>Datos del Profesional</h3>
-        <div class="form-group">
-          <label>Número de Tarjeta Profesional:</label>
-          <input type="number" name="numero_tarjeta_profesional" min="50000" max="80000">
-        </div>
-        <div class="form-group">
-          <label>Especialidad:</label>
-          <input type="text" name="especialidad">
-        </div>
-        <div class="form-group">
-          <label>Años de Experiencia:</label>
-          <input type="number" name="años_experiencia" min="0">
-        </div>
-      </div>
+  <h3>Datos del Profesional</h3>
+  <div class="form-group">
+    <label>Número de Tarjeta Profesional:</label>
+    <input type="number" name="numero_tarjeta_profesional" min="50000" max="80000" required>
+  </div>
+  <div class="form-group">
+    <label>Especialidad:</label>
+    <input type="text" name="especialidad" required>
+  </div>
+  <div class="form-group">
+    <label>Años de Experiencia:</label>
+    <input type="number" name="anios_experiencia" min="0" max="80" required>
+  </div>
+</div>
+
 
       <!-- Familiar -->
       <div id="familiar_fields" style="display: none;">
