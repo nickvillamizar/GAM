@@ -29,7 +29,7 @@
             <section class="hero">
                 <h2>Tu bienestar es nuestra prioridad</h2>
                 <p>Encuentra apoyo, orientación y herramientas para tu recuperación en un entorno seguro y confiable.</p>
-                <a class="btn" href="registro.php">Únete Ahora</a> <!-- Corregido -->
+                <a class="btn" href="views/test_pgsi_ludopatia.html">Test Especializado</a> <!-- Corregido -->
             </section>
 
             <section class="features">

@@ -6,7 +6,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro con opacidad */
+  background: rgba(205, 94, 94, 0.6); /* Fondo oscuro con opacidad */
   border-radius: 10px;
   margin-top: 80px;
 }
@@ -20,7 +20,7 @@
 /* Secciones generales */
 .panel section {
   margin-bottom: 40px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(250, 111, 111, 0.1);
   padding: 20px;
   border-radius: 10px;
   width: 100%;

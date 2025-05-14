@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PGSI - Diagnóstico de Juego Problemático</title>
+    <link rel="stylesheet" href="css/styles_test.css">
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="video/date_video.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+    </video>
+    <div class="overlay">
+        <header>
+            <h1>Plataforma Apuesta por Ti</h1>
+           
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h2>Test PGSI - Índice de Severidad del Juego Problemático</h2>
+            <p>Instrumento validado científicamente que evalúa la severidad del juego patológico. Parte del Canadian Problem Gambling Index (CPGI), utilizado a nivel internacional.</p>
+            <p>Desarrollado por Ferris y Wynne (2001), el PGSI es recomendado por expertos en salud mental para detectar señales de ludopatía.</p>
+        </section>
+
+        <div class="test-container">
+            <form id="pgsi-form">
+                <!-- Preguntas del PGSI -->
+                <div class="question">
+                    <h4>1. ¿Ha apostado más de lo que realmente podía permitirse perder?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q1" value="1"> A veces</label>
+                        <label><input type="radio" name="q1" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q1" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>2. ¿Ha necesitado apostar cantidades de dinero cada vez mayores para obtener la misma emoción?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q2" value="1"> A veces</label>
+                        <label><input type="radio" name="q2" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q2" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>3. ¿Ha vuelto a apostar otro día para intentar recuperar el dinero perdido?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q3" value="1"> A veces</label>
+                        <label><input type="radio" name="q3" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q3" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>4. ¿Ha pedido dinero prestado o vendido algo para obtener dinero para apostar?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q4" value="1"> A veces</label>
+                        <label><input type="radio" name="q4" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q4" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>5. ¿Ha sentido que podría tener un problema con el juego?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q5" value="1"> A veces</label>
+                        <label><input type="radio" name="q5" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q5" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>6. ¿La gente ha criticado sus apuestas o le ha dicho que tenía un problema con el juego, independientemente de si usted creía que era cierto o no?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q6" value="1"> A veces</label>
+                        <label><input type="radio" name="q6" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q6" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>7. ¿Apostar le ha causado problemas de salud, incluyendo una sensación de estrés o ansiedad?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q7" value="1"> A veces</label>
+                        <label><input type="radio" name="q7" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q7" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>8. ¿Apostar le ha causado problemas financieros para usted o su hogar?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q8" value="1"> A veces</label>
+                        <label><input type="radio" name="q8" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q8" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <h4>9. ¿Se ha sentido culpable por la forma en que apuesta o por lo que sucede cuando juega?</h4>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="0" required> Nunca</label>
+                        <label><input type="radio" name="q9" value="1"> A veces</label>
+                        <label><input type="radio" name="q9" value="2"> La mayoría del tiempo</label>
+                        <label><input type="radio" name="q9" value="3"> Casi siempre</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">Evaluar Resultado</button>
+            </form>
+            <div id="resultado" class="result"></div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Apuesta por Ti - Evaluación basada en el PGSI. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('pgsi-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            let total = 0;
+            for (let value of formData.values()) {
+                total += parseInt(value);
+            }
+
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `<h3>Resultado: ${total} puntos</h3>`;
+
+            let mensaje = "";
+            if (total === 0) {
+                mensaje = "No presentas signos de juego problemático. Mantén hábitos responsables.";
+            } else if (total <= 2) {
+                mensaje = "Riesgo bajo. Aunque no hay una indicación clara de problema, es recomendable seguir monitoreando tus hábitos de juego.";
+            } else if (total <= 7) {
+                mensaje = "Riesgo moderado. Podrías estar desarrollando una conducta de juego problemática. Te recomendamos hablar con un profesional.";
+            } else {
+                mensaje = "Riesgo alto. Es muy probable que estés lidiando con ludopatía. Busca apoyo psicológico especializado cuanto antes.";
+            }
+
+            resultadoDiv.innerHTML += `<p><strong>Recomendación:</strong> ${mensaje}</p>`;
+        });
+    </script>
+</body>
+</html>

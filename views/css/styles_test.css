@@ -1,0 +1,222 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Fondo y video */
+body {
+    color: #fff;
+    text-align: center;
+    background: rgba(67, 56, 56, 0.7);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Capa de opacidad */
+.overlay {
+    background: rgba(112, 104, 104, 0.7);
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Encabezado */
+header {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;
+    padding: 15px;
+}
+
+header h1 {
+    font-size: 2.5rem; /* Más grande */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Navegación (si necesitas añadir luego) */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #d13a3a;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffffff;
+    background: rgba(209, 58, 58, 0.4);
+    border-radius: 8px;
+}
+
+/* Hero */
+.hero {
+    margin: 30px 0;
+    padding: 40px;
+    background: rgba(202, 40, 40, 0.6);
+    border-radius: 12px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.hero h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del test */
+.test-container {
+    background: rgba(120, 82, 82, 0.3);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.test-container:hover {
+    transform: scale(1.01);
+}
+
+.question {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.question h4 {
+    color: #FFD700;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.options label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.options label:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.1);
+}
+
+/* Botón */
+.btn {
+    background: linear-gradient(45deg, #322f2e, #846767);
+    color: #fff;
+    padding: 16px 40px; /* Más grande */
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2rem; /* Aumentado */
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #524848, #00c3ff);
+    transform: scale(1.07);
+}
+
+/* Resultado */
+.result {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Barra de progreso */
+.progress-bar-container {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #d13a3a, #846767);
+    transition: width 0.4s ease;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+
+    .test-container {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 1.1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
